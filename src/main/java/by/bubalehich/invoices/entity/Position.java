@@ -6,26 +6,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @Entity
-@Table(name = "items")
-public class Item {
+@Table(name = "positions")
+public class Position {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(nullable = false)
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "itemId", nullable = false)
+    private Item item;
+
+    @ManyToOne
+    @JoinColumn(name = "cashReceiptId", nullable = false)
+    private CashReceipt cashReceipt;
 
     @Column(nullable = false)
-    private BigDecimal price;
-
-    @Column
-    private boolean isOnDiscount;
+    private int count;
 }
