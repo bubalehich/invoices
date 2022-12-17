@@ -18,6 +18,9 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true, nullable = false, length = 45)
+    private String barcode;
+
     @Column(nullable = false, unique = true)
     private String number;
 

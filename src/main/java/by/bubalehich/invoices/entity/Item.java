@@ -20,6 +20,9 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(unique = true, nullable = false, length = 45)
+    private String barcode;
+
     @Column(nullable = false)
     private String description;
 
