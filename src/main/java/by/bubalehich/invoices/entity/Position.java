@@ -16,7 +16,7 @@ public class Position {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "itemId", nullable = false)
