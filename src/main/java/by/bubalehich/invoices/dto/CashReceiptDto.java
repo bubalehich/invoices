@@ -3,7 +3,6 @@ package by.bubalehich.invoices.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.util.Pair;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,11 +11,15 @@ import java.util.List;
 @Setter
 @ToString
 public class CashReceiptDto {
-    private List<PositionDto> positions = new LinkedList<>();
 
     private String cardNumber;
+    private List<PositionDto> positions = new LinkedList<>();
 
-    public void addPosition(String item, int count ){
+    public void addPosition(String item, int count) {
         positions.add(new PositionDto(item, count));
+    }
+
+    public boolean hasCard() {
+        return cardNumber != null && !cardNumber.isEmpty();
     }
 }

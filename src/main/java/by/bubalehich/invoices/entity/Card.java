@@ -1,10 +1,7 @@
 package by.bubalehich.invoices.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,4 +26,8 @@ public class Card {
 
     @Column
     private String holderName;
+
+    public Card (String barcode){
+        this.barcode = barcode;
+    }
 }
