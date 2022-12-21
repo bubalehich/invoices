@@ -33,11 +33,14 @@ public class CashReceipt {
     @Column(nullable = false)
     private BigDecimal total;
 
-    @Column(nullable = false)
-    private Date date;
+    @Column
+    private BigDecimal taxableTotal;
 
     @Column
     private BigDecimal discount;
+
+    @Column(nullable = false)
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name = "cardId")

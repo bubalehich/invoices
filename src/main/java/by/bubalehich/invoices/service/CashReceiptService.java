@@ -24,6 +24,8 @@ public class CashReceiptService {
 
     private CardService cardService;
 
+    private CashReceiptCalculator calculator;
+
     @Transactional
     public CashReceipt create(String[] args) {
         var validationResult = ArgumentValidator.validate(args);
@@ -50,6 +52,14 @@ public class CashReceiptService {
         cashReceipt.setDate(new Date());
         cashReceipt.setCashier("Random Name");
         cashReceipt.setBarcode(UUID.randomUUID().toString());
+
+        var totalSumWithoutDiscount = calculator.calculateTotalSumWithoutDiscount(cashReceipt);
+        int countOfDiscountPositions = calculator.calculateCountOfDiscountPositions(cashReceipt);
+        var discount = calculator.calculateDiscount(totalSumWithoutDiscount, countOfDiscountPositions);
+
+        cashReceipt.setDiscount(discount);
+        cashReceipt.setTotal(totalSumWithoutDiscount);
+        cashReceipt.setTaxableTotal(totalSumWithoutDiscount.subtract(discount));
 
         return cashReceipt;
     }
