@@ -7,5 +7,3 @@
 5. insert inital data, using `initial_data.sql` script
 6. check tables: `\dt` command
 
-
-
