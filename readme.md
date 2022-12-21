@@ -7,3 +7,13 @@
 5. insert inital data, using `initial_data.sql` script
 6. check tables: `\dt` command
 
+## Build Jar
+
+from project root dir `gradle init --type java-library `
+
+## Stack
+1. Java 17
+2. Gradle 7.6
+3. Spring Boot, Hibernate
+4. Postgres 15
+5. Lombok
