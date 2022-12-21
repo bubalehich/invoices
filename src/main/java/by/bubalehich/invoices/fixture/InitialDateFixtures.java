@@ -4,10 +4,10 @@ import by.bubalehich.invoices.entity.Card;
 import by.bubalehich.invoices.entity.Item;
 import by.bubalehich.invoices.repository.CardRepository;
 import by.bubalehich.invoices.repository.ItemRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import ro.polak.springboot.datafixtures.DataFixture;
 import ro.polak.springboot.datafixtures.DataFixtureSet;
 
@@ -15,9 +15,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@Transactional
 @Component
+@PropertySource("classpath:application.properties")
 public class InitialDateFixtures implements DataFixture {
 
     private static final int COUNT_OF_CARDS = 10;
@@ -25,8 +24,10 @@ public class InitialDateFixtures implements DataFixture {
     @Value("${data-fixtures.enabled}")
     private boolean enableDataFixtures;
 
+    @Autowired
     private ItemRepository itemRepository;
 
+    @Autowired
     private CardRepository cardRepository;
 
     @Override
