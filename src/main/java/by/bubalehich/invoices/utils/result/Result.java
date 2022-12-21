@@ -6,24 +6,24 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Result {
-    private boolean succeed;
+    private final boolean succeed;
 
     private String errors;
 
-    protected Result(){
+    protected Result() {
         succeed = true;
     }
 
-    protected Result(String errors){
+    protected Result(String errors) {
         succeed = false;
         this.errors = errors;
     }
 
-    public static Result ok(){
+    public static Result ok() {
         return new Result();
     }
 
-    public static Result failure(String errors){
+    public static Result failure(String errors) {
         return new Result(errors);
     }
 }

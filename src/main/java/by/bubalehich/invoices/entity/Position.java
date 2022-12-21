@@ -28,4 +28,10 @@ public class Position {
 
     @Column(nullable = false)
     private int count;
+
+    public Position(Item item, int count, CashReceipt cashReceipt) {
+        this.item = item;
+        this.count = count;
+        this.cashReceipt = cashReceipt;
+    }
 }
