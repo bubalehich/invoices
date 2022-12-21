@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "positions")
+@Table
 public class Position {
 
     @Id

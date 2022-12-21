@@ -1,0 +1,11 @@
+## DATABASE
+
+1. connect to pg server: `psql -h 127.0.0.1 -p 5432 -U postgres`
+2. create db: `create database invoices_db;`
+3. connect to db :`\c invoices_db`
+4. execute `create_db.sql` script to create schema
+5. insert inital data, using `initial_data.sql` script
+6. check tables: `\dt` command
+
+
+

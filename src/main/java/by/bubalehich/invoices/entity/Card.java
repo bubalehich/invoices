@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "cards")
+@Table
 public class Card {
 
     @Id
@@ -17,9 +17,6 @@ public class Card {
 
     @Column(unique = true, nullable = false, length = 45)
     private String barcode;
-
-    @Column(nullable = false, unique = true)
-    private String number;
 
     @Column
     private boolean isActive;

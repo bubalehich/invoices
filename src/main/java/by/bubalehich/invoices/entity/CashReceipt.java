@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
-@Table(name = "card_receipts")
+@Table
 public class CashReceipt {
 
     @Id
