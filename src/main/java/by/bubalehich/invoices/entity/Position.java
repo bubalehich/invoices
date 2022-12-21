@@ -11,12 +11,12 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "positions")
+@Table
 public class Position {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "itemId", nullable = false)
@@ -28,4 +28,10 @@ public class Position {
 
     @Column(nullable = false)
     private int count;
+
+    public Position(Item item, int count, CashReceipt cashReceipt) {
+        this.item = item;
+        this.count = count;
+        this.cashReceipt = cashReceipt;
+    }
 }

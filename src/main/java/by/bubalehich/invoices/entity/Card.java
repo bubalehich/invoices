@@ -1,17 +1,14 @@
 package by.bubalehich.invoices.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "cards")
+@Table
 public class Card {
 
     @Id
@@ -21,12 +18,13 @@ public class Card {
     @Column(unique = true, nullable = false, length = 45)
     private String barcode;
 
-    @Column(nullable = false, unique = true)
-    private String number;
-
     @Column
     private boolean isActive;
 
     @Column
     private String holderName;
+
+    public Card (String barcode){
+        this.barcode = barcode;
+    }
 }
