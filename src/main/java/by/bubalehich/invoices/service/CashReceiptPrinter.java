@@ -1,11 +1,10 @@
 package by.bubalehich.invoices.service;
 
 import by.bubalehich.invoices.entity.CashReceipt;
-import by.bubalehich.invoices.entity.Position;
 
 import java.math.BigDecimal;
 
-public class CashReceiptPrinter {
+public final class CashReceiptPrinter {
 
     public static void print(CashReceipt cashReceipt) {
         System.out.println("----------CASH RECEIPT----------");
@@ -14,14 +13,13 @@ public class CashReceiptPrinter {
         System.out.println("--------------------------------");
         System.out.println("QTY DESCRIPTION     PRICE TOTAL ");
 
-        for (Position position : cashReceipt.getPositions()) {
-            System.out.printf("%n%3d%17s%6s%6s",
-                    position.getCount(),
-                    position.getItem().getDescription(),
-                    position.getItem().getPrice(),
-                    position.getItem().getPrice().multiply(BigDecimal.valueOf(position.getCount()))
-            );
-        }
+        cashReceipt.getPositions()
+                .forEach(position -> System.out.printf("%n%3d%17s%6s%6s",
+                        position.getCount(),
+                        position.getItem().getDescription(),
+                        position.getItem().getPrice(),
+                        position.getItem().getPrice().multiply(BigDecimal.valueOf(position.getCount()))
+                ));
 
         System.out.printf("%n--------------------------------");
         System.out.printf("%nSum: %27s", cashReceipt.getTaxableTotal());

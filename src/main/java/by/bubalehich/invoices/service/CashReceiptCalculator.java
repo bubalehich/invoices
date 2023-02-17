@@ -14,13 +14,14 @@ public class CashReceiptCalculator {
         var positionSumList = cashReceipt.getPositions().stream()
                 .map(p -> p.getItem().getPrice().multiply(new BigDecimal(p.getCount())))
                 .toList();
+
         return positionSumList.stream()
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal calculateDiscount(BigDecimal totalSum, int countOfDiscountPositions) {
         return countOfDiscountPositions > 5
-                ? totalSum.multiply(BigDecimal.valueOf(0.1))
+                ? totalSum.multiply(DISCOUNT)
                 : BigDecimal.ZERO;
     }
 

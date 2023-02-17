@@ -20,4 +20,8 @@ public class ItemService {
         return Optional.ofNullable(repository.findByBarcode(barcode)).orElseThrow(()
                 -> new EntityNotFoundException(String.format("Item with barcode: %s not found", barcode)));
     }
+
+    public boolean isExist(String barcode) {
+        return repository.existsByBarcode(barcode);
+    }
 }

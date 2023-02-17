@@ -1,11 +1,14 @@
 package by.bubalehich.invoices.service;
 
+import by.bubalehich.invoices.api.model.CashReceiptMutationModel;
 import by.bubalehich.invoices.entity.Card;
 import by.bubalehich.invoices.entity.CashReceipt;
 import by.bubalehich.invoices.entity.Item;
 import by.bubalehich.invoices.entity.Position;
+import by.bubalehich.invoices.exception.ValidationException;
 import by.bubalehich.invoices.repository.CashReceiptRepository;
 import by.bubalehich.invoices.service.mapper.CashReceiptMapper;
+import by.bubalehich.invoices.service.mapper.PositionMapper;
 import by.bubalehich.invoices.service.validator.ArgumentValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,15 +27,41 @@ public class CashReceiptService {
 
     private CardService cardService;
 
+    private PositionService positionService;
+
     private CashReceiptCalculator calculator;
+
+    @Transactional
+    public CashReceipt create(CashReceiptMutationModel model) {
+        CashReceipt cashReceipt = new CashReceipt();
+
+        model.getItemQuantityList().stream()
+                .map(PositionMapper::mapToPositionDtoFromString)
+                .filter(p -> itemService.isExist(p.getItem()))
+                .map(p -> new Position(itemService.getByBarcode(p.getItem()), p.getCount(), cashReceipt))
+                .forEach(cashReceipt::addPosition);
+
+        var card = cardService.getByBarcode(model.getCardNumber());
+
+        cashReceipt.setCard(card);
+        cashReceipt.setDate(new Date());
+        cashReceipt.setCashier("Dummy Name");
+        cashReceipt.setBarcode(UUID.randomUUID().toString());
+
+        closeCashReceipt(cashReceipt);
+
+        save(cashReceipt);
+        cashReceipt.getPositions().forEach(positionService::save);
+
+        return cashReceipt;
+    }
 
     @Transactional
     public CashReceipt create(String[] args) {
         var validationResult = ArgumentValidator.validate(args);
 
         if (!validationResult.isSucceed()) {
-            System.out.println("FAIL: " + validationResult.getErrors());
-            //TODO add logger
+            throw new ValidationException("Invalid datf.");
         }
 
         CashReceipt cashReceipt = new CashReceipt();
@@ -53,6 +82,10 @@ public class CashReceiptService {
         cashReceipt.setCashier("Random Name");
         cashReceipt.setBarcode(UUID.randomUUID().toString());
 
+        return closeCashReceipt(cashReceipt);
+    }
+
+    private CashReceipt closeCashReceipt(CashReceipt cashReceipt) {
         var totalSumWithoutDiscount = calculator.calculateTotalSumWithoutDiscount(cashReceipt);
         int countOfDiscountPositions = calculator.calculateCountOfDiscountPositions(cashReceipt);
         var discount = calculator.calculateDiscount(totalSumWithoutDiscount, countOfDiscountPositions);

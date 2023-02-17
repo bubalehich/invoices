@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface ItemRepository extends CrudRepository<Item, Long> {
 
     Item findByBarcode(String barcode);
+
+    boolean existsByBarcode(String barcode);
 }

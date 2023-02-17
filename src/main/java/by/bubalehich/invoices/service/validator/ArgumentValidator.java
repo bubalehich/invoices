@@ -44,7 +44,9 @@ public final class ArgumentValidator {
             throw new ValidationException("Only one card allowed.");
         }
 
-        var card = Arrays.stream(args).filter(a -> a.split(SEPARATOR)[0].equalsIgnoreCase(CARD)).findFirst().get();
+        var card = Arrays.stream(args)
+                .filter(a -> a.split(SEPARATOR)[0].equalsIgnoreCase(CARD))
+                .findFirst().get();
 
         if (card.split(SEPARATOR)[0].equalsIgnoreCase(CARD)
                 && card.split(SEPARATOR)[1].chars().allMatch(Character::isDigit)) {
