@@ -6,7 +6,7 @@ import by.bubalehich.invoices.api.model.CashReceiptViewModel;
 import by.bubalehich.invoices.api.validator.CashReceiptModelValidator;
 import by.bubalehich.invoices.entity.CashReceipt;
 import by.bubalehich.invoices.service.CashReceiptService;
-import by.bubalehich.invoices.service.mapper.CashReceiptMapper;
+import by.bubalehich.invoices.mapper.CashReceiptMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

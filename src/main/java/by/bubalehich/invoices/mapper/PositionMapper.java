@@ -1,4 +1,4 @@
-package by.bubalehich.invoices.service.mapper;
+package by.bubalehich.invoices.mapper;
 
 import by.bubalehich.invoices.dto.PositionDto;
 

@@ -1,15 +1,11 @@
 package by.bubalehich.invoices.service;
 
 import by.bubalehich.invoices.api.model.CashReceiptMutationModel;
-import by.bubalehich.invoices.entity.Card;
 import by.bubalehich.invoices.entity.CashReceipt;
-import by.bubalehich.invoices.entity.Item;
 import by.bubalehich.invoices.entity.Position;
-import by.bubalehich.invoices.exception.ValidationException;
 import by.bubalehich.invoices.repository.CashReceiptRepository;
-import by.bubalehich.invoices.service.mapper.CashReceiptMapper;
-import by.bubalehich.invoices.service.mapper.PositionMapper;
-import by.bubalehich.invoices.service.validator.ArgumentValidator;
+import by.bubalehich.invoices.mapper.PositionMapper;
+import by.bubalehich.invoices.util.CashReceiptCalculator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,39 +46,10 @@ public class CashReceiptService {
 
         closeCashReceipt(cashReceipt);
 
-        save(cashReceipt);
+        repository.save(cashReceipt);
         cashReceipt.getPositions().forEach(positionService::save);
 
         return cashReceipt;
-    }
-
-    @Transactional
-    public CashReceipt create(String[] args) {
-        var validationResult = ArgumentValidator.validate(args);
-
-        if (!validationResult.isSucceed()) {
-            throw new ValidationException("Invalid datf.");
-        }
-
-        CashReceipt cashReceipt = new CashReceipt();
-
-        var cashReceiptDto = CashReceiptMapper.mapToDtoFromArray(args);
-
-        if (cashReceiptDto.hasCard()) {
-            Card card = cardService.getByBarcode(cashReceiptDto.getCardNumber());
-            cashReceipt.setCard(card);
-        }
-
-        cashReceiptDto.getPositions().forEach(dto -> {
-            Item item = itemService.getByBarcode(dto.getItem());
-            cashReceipt.addPosition(new Position(item, dto.getCount(), cashReceipt));
-        });
-
-        cashReceipt.setDate(new Date());
-        cashReceipt.setCashier("Random Name");
-        cashReceipt.setBarcode(UUID.randomUUID().toString());
-
-        return closeCashReceipt(cashReceipt);
     }
 
     private CashReceipt closeCashReceipt(CashReceipt cashReceipt) {
@@ -95,10 +62,5 @@ public class CashReceiptService {
         cashReceipt.setTaxableTotal(totalSumWithoutDiscount.subtract(discount));
 
         return cashReceipt;
-    }
-
-    @Transactional
-    public CashReceipt save(CashReceipt cashReceipt) {
-        return repository.save(cashReceipt);
     }
 }

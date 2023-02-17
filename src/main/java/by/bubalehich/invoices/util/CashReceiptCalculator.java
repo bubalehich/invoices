@@ -1,4 +1,4 @@
-package by.bubalehich.invoices.service;
+package by.bubalehich.invoices.util;
 
 import by.bubalehich.invoices.entity.CashReceipt;
 import by.bubalehich.invoices.entity.Position;
