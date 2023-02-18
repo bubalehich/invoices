@@ -12,7 +12,6 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class CardService {
-
     private CardRepository repository;
 
     @Transactional(readOnly = true)

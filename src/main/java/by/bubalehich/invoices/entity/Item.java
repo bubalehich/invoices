@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 @Entity
 @Table
 public class Item {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

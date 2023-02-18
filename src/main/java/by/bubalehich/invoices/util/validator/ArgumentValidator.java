@@ -1,4 +1,4 @@
-package by.bubalehich.invoices.service.validator;
+package by.bubalehich.invoices.util.validator;
 
 import by.bubalehich.invoices.exception.ValidationException;
 import by.bubalehich.invoices.utils.result.Result;

@@ -1,12 +1,11 @@
-package by.bubalehich.invoices.service;
+package by.bubalehich.invoices.util;
 
 import by.bubalehich.invoices.entity.CashReceipt;
 import by.bubalehich.invoices.entity.Position;
 
 import java.math.BigDecimal;
 
-public class CashReceiptPrinter {
-
+public final class CashReceiptPrinter {
     public static void print(CashReceipt cashReceipt) {
         System.out.println("----------CASH RECEIPT----------");
         System.out.printf("Cashier:  %22s%n", cashReceipt.getCashier());

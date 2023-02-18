@@ -12,12 +12,15 @@ import java.util.Optional;
 @AllArgsConstructor
 @Service
 public class ItemService {
-
     private ItemRepository repository;
 
     @Transactional(readOnly = true)
     public Item getByBarcode(String barcode) {
         return Optional.ofNullable(repository.findByBarcode(barcode)).orElseThrow(()
                 -> new EntityNotFoundException(String.format("Item with barcode: %s not found", barcode)));
+    }
+
+    public boolean isExist(String barcode) {
+        return repository.existsByBarcode(barcode);
     }
 }

@@ -1,7 +1,10 @@
 package by.bubalehich.invoices.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -10,7 +13,6 @@ import lombok.*;
 @Entity
 @Table
 public class Card {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,7 +26,7 @@ public class Card {
     @Column
     private String holderName;
 
-    public Card (String barcode){
+    public Card(String barcode) {
         this.barcode = barcode;
     }
 }

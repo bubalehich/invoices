@@ -13,7 +13,6 @@ import lombok.Setter;
 @Entity
 @Table
 public class Position {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

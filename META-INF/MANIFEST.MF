@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Implementation-Title: invoices
+Implementation-Version: 1.3.5

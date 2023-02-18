@@ -1,4 +1,4 @@
-package by.bubalehich.invoices.service.mapper;
+package by.bubalehich.invoices.util.mapper;
 
 import by.bubalehich.invoices.dto.CashReceiptDto;
 

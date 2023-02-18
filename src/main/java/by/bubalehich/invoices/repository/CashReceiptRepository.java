@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CashReceiptRepository extends CrudRepository<CashReceipt,Long> {
+public interface CashReceiptRepository extends CrudRepository<CashReceipt, Long> {
 }

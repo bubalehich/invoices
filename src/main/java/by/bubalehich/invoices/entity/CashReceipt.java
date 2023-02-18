@@ -16,7 +16,6 @@ import java.util.List;
 @Entity
 @Table
 public class CashReceipt {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
