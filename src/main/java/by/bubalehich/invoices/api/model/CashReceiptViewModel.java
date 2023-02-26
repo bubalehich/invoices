@@ -19,9 +19,9 @@ public class CashReceiptViewModel extends ResourceModel {
 
     private List<PositionViewModel> positions;
 
-    private BigDecimal taxableTotal;
+    private BigDecimal amount;
 
     private BigDecimal discount;
 
-    private BigDecimal total;
+    private BigDecimal totalAmount;
 }

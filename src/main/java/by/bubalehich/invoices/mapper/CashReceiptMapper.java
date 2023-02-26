@@ -7,9 +7,9 @@ import by.bubalehich.invoices.entity.CashReceipt;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public final class CashReceiptMapper {
+public class CashReceiptMapper {
 
-    public static CashReceiptViewModel mapToViewFromCashReceipt(CashReceipt receipt) {
+    public CashReceiptViewModel mapToViewFromCashReceipt(CashReceipt receipt) {
         var cashReceiptViewModel = CashReceiptViewModel.builder()
                 .cashier(receipt.getCashier())
                 .date(receipt.getDate())
@@ -19,8 +19,8 @@ public final class CashReceiptMapper {
                                 p.getCount(),
                                 p.getItem().getPrice().multiply(BigDecimal.valueOf(p.getCount())))).
                         toList())
-                .total(receipt.getTotal())
-                .taxableTotal(receipt.getTaxableTotal())
+                .totalAmount(receipt.getTotalAmount())
+                .amount(receipt.getAmount())
                 .discount(receipt.getDiscount())
                 .build();
 
