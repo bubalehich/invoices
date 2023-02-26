@@ -1,16 +1,12 @@
 package by.bubalehich.invoices.service;
 
-import by.bubalehich.invoices.entity.CashReceipt;
-import by.bubalehich.invoices.entity.Item;
-import by.bubalehich.invoices.entity.Position;
+import by.bubalehich.invoices.objectmother.ObjectMother;
 import by.bubalehich.invoices.repository.PositionRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -27,14 +23,13 @@ class PositionServiceTest {
 
     @Test
     void save() {
-        var position = new Position(1L, new Item(1L, "1", "...", BigDecimal.ONE, false), new CashReceipt(), 1);
-        var expected = new Position(new Item(1L, "1", "...", BigDecimal.ONE, false), 1, new CashReceipt());
-        when(repository.save(position)).thenReturn(expected);
+        var expected = ObjectMother.getPosition();
+        when(repository.save(expected)).thenReturn(expected);
 
-        var result = service.save(position);
+        var actual = service.save(expected);
 
-        assertNotNull(result);
-        assertEquals(expected, result);
-        verify(repository).save(position);
+        assertNotNull(actual);
+        assertEquals(expected, actual);
+        verify(repository).save(expected);
     }
 }

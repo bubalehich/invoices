@@ -2,6 +2,7 @@ package by.bubalehich.invoices.service;
 
 import by.bubalehich.invoices.entity.Card;
 import by.bubalehich.invoices.entity.Item;
+import by.bubalehich.invoices.objectmother.ObjectMother;
 import by.bubalehich.invoices.repository.ItemRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
@@ -29,20 +30,20 @@ class ItemServiceTest {
 
     @Test
     void testGetByBarcodeSuccess() {
-        String barcode = UUID.randomUUID().toString();
-        Item item = new Item(1L, barcode, "Kolbasa",new BigDecimal(1), false );
-        when(repository.findByBarcode(barcode)).thenReturn(item);
+        var barcode = UUID.randomUUID().toString();
+        var expected = ObjectMother.getItem();
+        when(repository.findByBarcode(barcode)).thenReturn(expected);
 
-        Item result = service.getByBarcode(barcode);
+        var actual = service.getByBarcode(barcode);
 
-        assertNotNull(result);
-        assertEquals(result.getBarcode(), barcode);
+        assertNotNull(actual);
+        assertEquals(expected.getBarcode(), actual.getBarcode());
         Mockito.verify(repository).findByBarcode(barcode);
     }
 
     @Test
     void testGetByBarcodeShouldThrowException() {
-        String barcode = UUID.randomUUID().toString();
+        var barcode = UUID.randomUUID().toString();
         when(repository.findByBarcode(anyString())).thenReturn(null);
 
         assertThrows(EntityNotFoundException.class,
@@ -53,9 +54,9 @@ class ItemServiceTest {
     void testIsExistShouldReturnFalse() {
         when(repository.existsByBarcode(anyString())).thenReturn(false);
 
-        var result = service.isExist(UUID.randomUUID().toString());
+        var actual = service.isExist(UUID.randomUUID().toString());
 
-        assertFalse(result);
+        assertFalse(actual);
         verify(repository).existsByBarcode(anyString());
     }
 
@@ -63,9 +64,9 @@ class ItemServiceTest {
     void testIsExistShouldReturnTrue() {
         when(repository.existsByBarcode(anyString())).thenReturn(true);
 
-        var result = service.isExist(UUID.randomUUID().toString());
+        var actual = service.isExist(UUID.randomUUID().toString());
 
-        assertTrue(result);
+        assertTrue(actual);
         verify(repository).existsByBarcode(anyString());
     }
 }

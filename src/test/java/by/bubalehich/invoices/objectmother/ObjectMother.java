@@ -6,6 +6,7 @@ import by.bubalehich.invoices.entity.Card;
 import by.bubalehich.invoices.entity.CashReceipt;
 import by.bubalehich.invoices.entity.Item;
 import by.bubalehich.invoices.entity.Position;
+import by.bubalehich.invoices.util.mapper.CalculatorResult;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,7 +14,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class ObjectMother {
-    //TODO add builders, remove redundant fields, single MO
     public static CashReceiptMutationModel getCashReceiptMutationModel() {
         return CashReceiptMutationModel.builder()
                 .cardNumber("1234")
@@ -36,7 +36,9 @@ public class ObjectMother {
     }
 
     public static Card getCard() {
-        return new Card(1L, "1234", true, "Some Name");
+        return Card.builder()
+                .barcode("1234")
+                .build();
     }
 
     public static List<Position> getPositions() {
@@ -47,7 +49,10 @@ public class ObjectMother {
     }
 
     public static Item getItem() {
-        return new Item(1L, "2", "Some description", BigDecimal.ONE, false);
+        return Item.builder()
+                .barcode("2")
+                .price(BigDecimal.ONE)
+                .build();
     }
 
     public static Item getDiscountItem() {
@@ -56,10 +61,6 @@ public class ObjectMother {
                 .isOnDiscount(true)
                 .build();
     }
-
-//    public static List<Position> getPositionsWithDiscountItem(){
-//        return List
-//    }
 
     public static PositionDto getPositionDto() {
         return new PositionDto("2", 2);
@@ -82,6 +83,33 @@ public class ObjectMother {
                 .amount(BigDecimal.valueOf(100))
                 .discount(BigDecimal.valueOf(50))
                 .totalAmount(BigDecimal.valueOf(50))
+                .build();
+    }
+
+    public static Position getPosition() {
+        return Position.builder()
+                .item(getItem())
+                .count(1)
+                .cashReceipt(new CashReceipt())
+                .build();
+    }
+
+    public static CalculatorResult getCalculatorResultWithoutDiscount() {
+        return new CalculatorResult(BigDecimal.valueOf(2), BigDecimal.ZERO, BigDecimal.valueOf(2));
+    }
+
+    public static CalculatorResult getCalculatorResultWithDiscount() {
+        return new CalculatorResult(BigDecimal.valueOf(100), BigDecimal.valueOf(10.0), BigDecimal.valueOf(90.0));
+    }
+
+    public static CashReceipt getCashReceiptWithDiscountPositions() {
+        return CashReceipt.builder()
+                .card(new Card())
+                .positions(List.of(
+                        Position.builder()
+                                .item(ObjectMother.getDiscountItem())
+                                .count(10)
+                                .build()))
                 .build();
     }
 }

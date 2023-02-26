@@ -16,23 +16,23 @@ class CashReceiptMapperTest {
 
     @Test
     void mapToViewFromCashReceipt() {
-        var cashReceipt = ObjectMother.getFullCashReceipt();
+        var expected = ObjectMother.getFullCashReceipt();
 
-        var actual = mapper.mapToViewFromCashReceipt(cashReceipt);
+        var actual = mapper.mapToViewFromCashReceipt(expected);
 
         assertNotNull(actual);
         assertNotNull(actual.getAmount());
-        assertEquals(cashReceipt.getAmount(), actual.getAmount());
+        assertEquals(expected.getAmount(), actual.getAmount());
         assertNotNull(actual.getTotalAmount());
-        assertEquals(cashReceipt.getTotalAmount(), actual.getTotalAmount());
+        assertEquals(expected.getTotalAmount(), actual.getTotalAmount());
         assertNotNull(actual.getDiscount());
-        assertEquals(cashReceipt.getDiscount(), actual.getDiscount());
+        assertEquals(expected.getDiscount(), actual.getDiscount());
         assertNotNull(actual.getAmount());
-        assertEquals(cashReceipt.getAmount(), actual.getAmount());
+        assertEquals(expected.getAmount(), actual.getAmount());
         assertNotNull(actual.getCashier());
         assertNotNull(actual.getPositions());
-        assertEquals(cashReceipt.getPositions().size(), actual.getPositions().size());
+        assertEquals(expected.getPositions().size(), actual.getPositions().size());
         assertNotNull(actual.getDate());
-        assertEquals(cashReceipt.getDate(), actual.getDate());
+        assertEquals(expected.getDate(), actual.getDate());
     }
 }
