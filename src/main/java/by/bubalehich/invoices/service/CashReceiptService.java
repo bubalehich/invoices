@@ -26,12 +26,14 @@ public class CashReceiptService {
 
     private CashReceiptCalculator calculator;
 
+    private PositionMapper mapper;
+
     @Transactional
     public CashReceipt create(CashReceiptMutationModel model) {
         CashReceipt cashReceipt = new CashReceipt();
 
         model.getItemQuantityList().stream()
-                .map(PositionMapper::mapToPositionDtoFromString)
+                .map(mapper::mapToPositionDtoFromString)
                 .filter(p -> itemService.isExist(p.getItem()))
                 .map(p -> new Position(itemService.getByBarcode(p.getItem()), p.getCount(), cashReceipt))
                 .forEach(cashReceipt::addPosition);
@@ -43,22 +45,14 @@ public class CashReceiptService {
         cashReceipt.setCashier("Dummy Name");
         cashReceipt.setBarcode(UUID.randomUUID().toString());
 
-        closeCashReceipt(cashReceipt);
+        var calculations = calculator.calculate(cashReceipt);
+
+        cashReceipt.setAmount(calculations.amount());
+        cashReceipt.setDiscount(calculations.discount());
+        cashReceipt.setTotalAmount(calculations.totalAmount());
 
         repository.save(cashReceipt);
         cashReceipt.getPositions().forEach(positionService::save);
-
-        return cashReceipt;
-    }
-
-    private CashReceipt closeCashReceipt(CashReceipt cashReceipt) {
-        var totalSumWithoutDiscount = calculator.calculateTotalSumWithoutDiscount(cashReceipt);
-        int countOfDiscountPositions = calculator.calculateCountOfDiscountPositions(cashReceipt);
-        var discount = calculator.calculateDiscount(totalSumWithoutDiscount, countOfDiscountPositions);
-
-        cashReceipt.setDiscount(discount);
-        cashReceipt.setTotal(totalSumWithoutDiscount);
-        cashReceipt.setTaxableTotal(totalSumWithoutDiscount.subtract(discount));
 
         return cashReceipt;
     }
