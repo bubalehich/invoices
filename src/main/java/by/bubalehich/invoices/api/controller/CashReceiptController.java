@@ -17,13 +17,14 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class CashReceiptController implements CashReceiptApi {
     private CashReceiptService service;
     private CashReceiptModelValidator validator;
+    private CashReceiptMapper mapper;
 
     @Override
     public ResponseEntity<CashReceiptViewModel> createCashReceipt(CashReceiptMutationModel model) {
         validator.validate(model);
 
         CashReceipt cashReceipt = service.create(model);
-        CashReceiptViewModel viewModel = CashReceiptMapper.mapToViewFromCashReceipt(cashReceipt);
+        CashReceiptViewModel viewModel = mapper.mapToViewFromCashReceipt(cashReceipt);
 
         var uri =
                 ServletUriComponentsBuilder.fromCurrentRequest()

@@ -26,14 +26,15 @@ public class CashReceipt {
     @Column(nullable = false)
     private String cashier;
 
+    @Builder.Default
     @OneToMany(mappedBy = "cashReceipt")
     private List<Position> positions = new LinkedList<>();
 
     @Column(nullable = false)
-    private BigDecimal total;
+    private BigDecimal totalAmount;
 
     @Column
-    private BigDecimal taxableTotal;
+    private BigDecimal amount;
 
     @Column
     private BigDecimal discount;
