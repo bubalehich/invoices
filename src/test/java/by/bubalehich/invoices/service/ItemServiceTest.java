@@ -1,7 +1,5 @@
 package by.bubalehich.invoices.service;
 
-import by.bubalehich.invoices.entity.Card;
-import by.bubalehich.invoices.entity.Item;
 import by.bubalehich.invoices.objectmother.ObjectMother;
 import by.bubalehich.invoices.repository.ItemRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -9,10 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,7 +34,7 @@ class ItemServiceTest {
 
         assertNotNull(actual);
         assertEquals(expected.getBarcode(), actual.getBarcode());
-        Mockito.verify(repository).findByBarcode(barcode);
+        verify(repository).findByBarcode(barcode);
     }
 
     @Test

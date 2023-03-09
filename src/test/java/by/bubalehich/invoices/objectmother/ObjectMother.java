@@ -62,10 +62,6 @@ public class ObjectMother {
                 .build();
     }
 
-    public static PositionDto getPositionDto() {
-        return new PositionDto("2", 2);
-    }
-
     public static CashReceipt getCashReceipt() {
         return CashReceipt.builder()
                 .card(getCard())

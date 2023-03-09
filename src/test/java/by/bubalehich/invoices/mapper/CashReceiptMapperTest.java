@@ -1,5 +1,7 @@
 package by.bubalehich.invoices.mapper;
 
+import by.bubalehich.invoices.builder.impl.CashReceiptBuilder;
+import by.bubalehich.invoices.entity.CashReceipt;
 import by.bubalehich.invoices.objectmother.ObjectMother;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static by.bubalehich.invoices.builder.impl.CashReceiptMutationModelBuilder.aCashReceiptMutationModel;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -15,12 +16,12 @@ class CashReceiptModelValidatorTest {
     @InjectMocks
     private CashReceiptModelValidator validator;
 
+//    private final CashReceiptMutationModelBuilder cashReceiptMutationModelBuilder = CashReceiptMutationModelBuilder.aCashReceiptMutationModel();
+
     @Test
     @DisplayName("╯°□°）╯")
     void testValidateSuccess() {
-        var model = ObjectMother.getCashReceiptMutationModel();
-
-        assertDoesNotThrow(() -> validator.validate(model));
+        assertDoesNotThrow(() -> validator.validate(aCashReceiptMutationModel().build()));
     }
 
     @Test
