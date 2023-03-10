@@ -1,0 +1,42 @@
+#db configs
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: 'jdbc:postgresql://localhost:5432/invoices_db'
+    username: postgres
+    password: password
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# hibernate logging lvl
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+#fixtures (for local env)
+data-fixtures:
+  enabled: false
+  sets: DICTIONARY
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+# for LFU & LRU caches task
+cache:
+  algorithm: LFU
+  size:
+    max: 8
