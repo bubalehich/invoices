@@ -17,3 +17,8 @@ from project root dir `gradle init --type java-library `
 3. Spring Boot, Hibernate
 4. Postgres 15
 5. Lombok
+
+## Endpoints
+
+ 1. create POST api/v1/cashreceipt
+ 2. 

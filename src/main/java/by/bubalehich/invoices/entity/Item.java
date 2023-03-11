@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @Builder
 @Entity
 @Table
+@EqualsAndHashCode
 public class Item extends BaseEntity {
     @Column(unique = true, nullable = false, length = 45)
     private String barcode;

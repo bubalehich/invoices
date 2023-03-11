@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LRUCacheTest {
+
+class LFUCacheTest {
     private Cache<Long, Card> cache;
 
     @BeforeEach

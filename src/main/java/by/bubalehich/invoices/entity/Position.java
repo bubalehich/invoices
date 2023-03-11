@@ -11,6 +11,7 @@ import lombok.*;
 @Builder
 @Entity
 @Table
+@EqualsAndHashCode
 public class Position extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "itemId", nullable = false)

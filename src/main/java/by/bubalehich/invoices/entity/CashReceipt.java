@@ -16,6 +16,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table
+@EqualsAndHashCode
 public class CashReceipt extends BaseEntity {
     @Column(unique = true, nullable = false, length = 45)
     private String barcode;
