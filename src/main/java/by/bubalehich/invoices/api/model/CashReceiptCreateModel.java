@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class CashReceiptMutationModel {
+public class CashReceiptCreateModel {
     @NotNull
     private List<String> itemQuantityList;
 

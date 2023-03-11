@@ -1,6 +1,6 @@
 package by.bubalehich.invoices.api.validator;
 
-import by.bubalehich.invoices.api.model.CashReceiptMutationModel;
+import by.bubalehich.invoices.api.model.CashReceiptCreateModel;
 import by.bubalehich.invoices.exception.ValidationException;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ public class CashReceiptModelValidator {
 
     private static final String CARD_REGEX = "\\d+";
 
-    public void validate(CashReceiptMutationModel model) {
+    public void validate(CashReceiptCreateModel model) {
         if (!isValidCardFormat(model.getCardNumber())) {
             throw new ValidationException("Invalid card format.");
         }

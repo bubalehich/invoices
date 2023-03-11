@@ -1,6 +1,6 @@
 package by.bubalehich.invoices.service.core;
 
-import by.bubalehich.invoices.api.model.CashReceiptMutationModel;
+import by.bubalehich.invoices.api.model.CashReceiptCreateModel;
 import by.bubalehich.invoices.entity.CashReceipt;
 import by.bubalehich.invoices.entity.Position;
 import by.bubalehich.invoices.mapper.PositionMapper;
@@ -30,7 +30,7 @@ public class CashReceiptService implements CashReceiptServiceInterface {
     private PositionMapper mapper;
 
     @Transactional
-    public CashReceipt create(CashReceiptMutationModel model) {
+    public CashReceipt create(CashReceiptCreateModel model) {
         CashReceipt cashReceipt = new CashReceipt();
 
         model.getItemQuantityList().stream()

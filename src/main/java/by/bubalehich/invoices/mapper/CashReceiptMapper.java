@@ -1,5 +1,6 @@
 package by.bubalehich.invoices.mapper;
 
+import by.bubalehich.invoices.api.model.CashReceiptUpdateModel;
 import by.bubalehich.invoices.api.model.CashReceiptViewModel;
 import by.bubalehich.invoices.api.model.PositionViewModel;
 import by.bubalehich.invoices.entity.CashReceipt;
@@ -29,5 +30,10 @@ public class CashReceiptMapper {
         cashReceiptViewModel.setId(UUID.randomUUID());
 
         return cashReceiptViewModel;
+    }
+
+    public CashReceipt mapFromView(CashReceiptUpdateModel model) {
+        // TODO to be implemented
+        return null;
     }
 }
