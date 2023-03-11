@@ -20,5 +20,9 @@ from project root dir `gradle init --type java-library `
 
 ## Endpoints
 
- 1. create POST api/v1/cashreceipt
- 2. 
+| No  | name         | method | address|
+|-----|--------------|---|---|
+| 1.  | create       |  POST | api/v1/cashreceipt|
+ | 2.  | get by id    | GET | api/v1/cashreceipt/{id}|
+ | 3.  | delete by id | DELETE    |  api/v1/cashreceipt/{id} |
+ |4.| update| PUT |api/v1/cashreceipt|
