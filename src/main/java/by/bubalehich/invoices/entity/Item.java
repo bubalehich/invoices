@@ -1,5 +1,6 @@
 package by.bubalehich.invoices.entity;
 
+import by.bubalehich.invoices.entity.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,11 +13,7 @@ import java.math.BigDecimal;
 @Builder
 @Entity
 @Table
-public class Item {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+public class Item extends BaseEntity {
     @Column(unique = true, nullable = false, length = 45)
     private String barcode;
 

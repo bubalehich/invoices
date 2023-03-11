@@ -1,5 +1,6 @@
 package by.bubalehich.invoices.entity;
 
+import by.bubalehich.invoices.entity.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,16 +13,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table
-public class Card {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+public class Card extends BaseEntity {
     @Column(unique = true, nullable = false, length = 45)
     private String barcode;
-
-    @Column
-    private boolean isActive;
 
     @Column
     private String holderName;

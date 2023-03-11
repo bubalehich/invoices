@@ -3,10 +3,12 @@ package by.bubalehich.invoices.mapper;
 import by.bubalehich.invoices.api.model.CashReceiptViewModel;
 import by.bubalehich.invoices.api.model.PositionViewModel;
 import by.bubalehich.invoices.entity.CashReceipt;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
+@Component
 public class CashReceiptMapper {
 
     public CashReceiptViewModel mapToViewFromCashReceipt(CashReceipt receipt) {

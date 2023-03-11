@@ -1,5 +1,6 @@
 package by.bubalehich.invoices.entity;
 
+import by.bubalehich.invoices.entity.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,11 +11,7 @@ import lombok.*;
 @Builder
 @Entity
 @Table
-public class Position {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+public class Position extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "itemId", nullable = false)
     private Item item;

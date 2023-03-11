@@ -1,5 +1,6 @@
 package by.bubalehich.invoices.entity;
 
+import by.bubalehich.invoices.entity.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,11 +16,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table
-public class CashReceipt {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+public class CashReceipt extends BaseEntity {
     @Column(unique = true, nullable = false, length = 45)
     private String barcode;
 
