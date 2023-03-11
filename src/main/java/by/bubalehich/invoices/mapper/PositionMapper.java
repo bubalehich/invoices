@@ -1,7 +1,9 @@
 package by.bubalehich.invoices.mapper;
 
 import by.bubalehich.invoices.dto.PositionDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PositionMapper {
     private static final String DELIMITER = "-";
 

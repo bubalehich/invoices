@@ -1,10 +1,11 @@
-package by.bubalehich.invoices.service;
+package by.bubalehich.invoices.service.core;
 
-import by.bubalehich.invoices.api.model.CashReceiptMutationModel;
+import by.bubalehich.invoices.api.model.CashReceiptCreateModel;
 import by.bubalehich.invoices.entity.CashReceipt;
 import by.bubalehich.invoices.entity.Position;
 import by.bubalehich.invoices.mapper.PositionMapper;
 import by.bubalehich.invoices.repository.CashReceiptRepository;
+import by.bubalehich.invoices.service.CashReceiptServiceInterface;
 import by.bubalehich.invoices.util.CashReceiptCalculator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @Service
-public class CashReceiptService {
+public class CashReceiptService implements CashReceiptServiceInterface {
     private CashReceiptRepository repository;
 
     private ItemService itemService;
@@ -29,7 +30,7 @@ public class CashReceiptService {
     private PositionMapper mapper;
 
     @Transactional
-    public CashReceipt create(CashReceiptMutationModel model) {
+    public CashReceipt create(CashReceiptCreateModel model) {
         CashReceipt cashReceipt = new CashReceipt();
 
         model.getItemQuantityList().stream()
@@ -55,5 +56,27 @@ public class CashReceiptService {
         cashReceipt.getPositions().forEach(positionService::save);
 
         return cashReceipt;
+    }
+
+    public CashReceipt get(Long id) {
+        //TODO will be implemented in another feature
+        return null;
+    }
+
+    @Override
+    public CashReceipt create(CashReceipt entity) {
+        //TODO will be implemented in another feature
+        return null;
+    }
+
+    @Override
+    public void delete(Long id) {
+        //TODO will be implemented in another feature
+    }
+
+    @Override
+    public CashReceipt update(CashReceipt entity) {
+        //TODO will be implemented in another feature
+        return null;
     }
 }
